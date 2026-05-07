@@ -7,4 +7,5 @@
 **/chats/
 **/prompt.txt
 **/configs/
+CLAUDE.md
 .env
