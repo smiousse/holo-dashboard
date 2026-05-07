@@ -4,6 +4,18 @@ A sci-fi smart-home control surface for **Home Assistant**, designed as a wall-m
 
 ![status](https://img.shields.io/badge/status-prototype-blue) ![stack](https://img.shields.io/badge/stack-React%2018-61dafb) ![home assistant](https://img.shields.io/badge/Home%20Assistant-WebSocket-41bdf5)
 
+![Main view](images/main_view.png)
+
+---
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Loading](images/loading_view.png) **Boot / loading** | ![Main](images/main_view.png) **Main dashboard** |
+| ![Actions](images/actions_view.png) **Extra actions** | ![Cameras](images/camera_feed_view.png) **Camera feed** |
+| ![Calendar](images/calendar_view.png) **Calendar screen** | ![Forecast](images/forecast_view.png) **Weather forecast** |
+
 ---
 
 ## Key Features
