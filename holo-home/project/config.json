@@ -1,0 +1,363 @@
+{
+  "$schema": "./config.schema.json",
+  "version": 1,
+  "language": "en",
+
+  "connection": {
+    "useRealHA": false,
+    "url": "http://localhost:8123",
+    "tokenStorageKey": "holohome.haToken.demo"
+  },
+
+  "weatherEntity": "weather.forecast_home",
+  "outsideTempEntity": "sensor.tempsensorhomeoutside_temperature",
+  "alarmEntity": "alarm_control_panel.blink_home",
+  "refreshCamerasScript": "script.refresh_cameras_maison",
+
+  "thermoColors": {
+    "heating": "#fb3927",
+    "heating_icon": "#9e0d04",
+    "cooling": "#2badfb",
+    "idle": "#656363",
+    "idle_icon": "#000000"
+  },
+
+  "floors": [
+    { "id": "rdc", "label": "UPPER" },
+    { "id": "bas", "label": "BASEMENT" }
+  ],
+
+  "zones": [
+    {
+      "id": "garage",
+      "name": "Garage",
+      "icon": "garage-cover",
+      "floor": "rdc",
+      "geometry": { "x": 4, "y": 2, "w": 22, "h": 14 },
+      "cover": { "id": "cover.gdo_home_door", "label": "Garage door" },
+      "entities": [
+        { "kind": "sensor", "id": "sensor.garage_humidity",    "label": "Humidity",    "unit": "%",  "icon": "humid",  "coloring": "humidity" },
+        { "kind": "sensor", "id": "sensor.garage_temperature", "label": "Temperature", "unit": "°C", "icon": "thermo", "coloring": "temperature" }
+      ]
+    },
+    {
+      "id": "office",
+      "name": "Office",
+      "icon": "office",
+      "floor": "rdc",
+      "geometry": { "x": 58, "y": 2, "w": 22, "h": 14 },
+      "entities": [
+        {
+          "kind": "printer",
+          "id": "sensor.bambu_lab_a1_heure_de_fin",
+          "stateEntity": "sensor.bambu_lab_a1_etat_de_l_impression",
+          "label": "Bambu Lab A1"
+        },
+        { "kind": "thermo", "id": "climate.thermostat_office", "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "icon": "kitchen",
+      "floor": "rdc",
+      "geometry": { "x": 4, "y": 18, "w": 22, "h": 22 },
+      "entities": [
+        { "kind": "light",  "id": "switch.smartswitchkitchen_left", "label": "Light" },
+        { "kind": "light",  "id": "switch.switchkitchencounter",    "label": "Counter light" },
+        { "kind": "thermo", "id": "climate.thermostatdiningroom",   "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "living_room",
+      "name": "Living room",
+      "icon": "sofa",
+      "floor": "rdc",
+      "geometry": { "x": 28, "y": 18, "w": 28, "h": 22 },
+      "entities": [
+        { "kind": "light",  "id": "light.switchtvroom",            "label": "TV light" },
+        { "kind": "fan",    "id": "switch.smartplugfanlivingroom", "label": "Fan" },
+        { "kind": "thermo", "id": "climate.thermostatlivingroom",  "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "gaming",
+      "name": "Gaming",
+      "icon": "gamepad",
+      "floor": "rdc",
+      "geometry": { "x": 58, "y": 18, "w": 22, "h": 22 },
+      "entities": [
+        { "kind": "light",  "id": "switch.smartswitchkitchen_right", "label": "Light" },
+        { "kind": "thermo", "id": "climate.thermostatofficeroom",    "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "bath_upper",
+      "name": "Upstairs bathroom",
+      "icon": "bath",
+      "floor": "rdc",
+      "geometry": { "x": 4, "y": 42, "w": 22, "h": 18 },
+      "entities": [
+        { "kind": "light",  "id": "switch.smartswitchbathroom_center", "label": "Light 1" },
+        { "kind": "light",  "id": "switch.smartswitchbathroom_right",  "label": "Light 2" },
+        { "kind": "fan",    "id": "switch.smartswitchbathroom_left",   "label": "Fan" },
+        { "kind": "thermo", "id": "climate.thermostatbathroom",        "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "bedroom_liam",
+      "name": "Liam's room",
+      "icon": "bed",
+      "floor": "rdc",
+      "geometry": { "x": 28, "y": 42, "w": 28, "h": 18 },
+      "entities": [
+        { "kind": "thermo", "id": "climate.thermostat_liam_bedroom", "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "master_bedroom",
+      "name": "Master bedroom",
+      "icon": "bed",
+      "floor": "rdc",
+      "geometry": { "x": 58, "y": 42, "w": 22, "h": 18 },
+      "entities": [
+        { "kind": "fan",    "id": "switch.plug_fan_master_bedroom",  "label": "Fan" },
+        { "kind": "thermo", "id": "climate.thermostatmasterbedroom", "label": "Thermostat" }
+      ]
+    },
+
+    {
+      "id": "bedroom_alex",
+      "name": "Alex's room",
+      "icon": "bed",
+      "floor": "bas",
+      "geometry": { "x": 4, "y": 2, "w": 24, "h": 26 },
+      "entities": [
+        { "kind": "thermo", "id": "climate.thermostat_alex_bedroom", "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "bedroom_noah",
+      "name": "Noah's room",
+      "icon": "bed",
+      "floor": "bas",
+      "geometry": { "x": 30, "y": 2, "w": 26, "h": 26 },
+      "entities": [
+        { "kind": "thermo", "id": "climate.thermostat_noah_bedroom", "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "bedroom_mia",
+      "name": "Mia's room",
+      "icon": "bed",
+      "floor": "bas",
+      "geometry": { "x": 58, "y": 2, "w": 22, "h": 26 },
+      "entities": [
+        { "kind": "thermo", "id": "climate.thermostat_mia_bedroom", "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "playroom",
+      "name": "Playroom",
+      "icon": "gamepad",
+      "floor": "bas",
+      "geometry": { "x": 4, "y": 30, "w": 50, "h": 26 },
+      "entities": [
+        { "kind": "light",  "id": "switch.lightkidsroom",                                "label": "Light" },
+        { "kind": "switch", "id": "switch.plug_sumpump",                                 "label": "Sump pump",     "icon": "pump" },
+        { "kind": "switch", "id": "switch.deshumidificateur_sous_sol",                   "label": "Dehumidifier",  "icon": "humid" },
+        { "kind": "sensor", "id": "sensor.sallejeuxtemphumsensor_salle_de_jeux_humidity","label": "Humidity",      "unit": "%", "icon": "humid" },
+        { "kind": "thermo", "id": "climate.thermostatgamingroom",                        "label": "Thermostat" }
+      ]
+    },
+    {
+      "id": "bath_lower",
+      "name": "Downstairs bathroom",
+      "icon": "bath",
+      "floor": "bas",
+      "geometry": { "x": 56, "y": 30, "w": 24, "h": 26 },
+      "entities": [
+        {
+          "kind": "appliance",
+          "id": "sensor.dryer_remaining_time",
+          "statusEntity": "sensor.dryer_current_status",
+          "label": "Dryer",
+          "visibleWhen": { "not": "power_off" }
+        },
+        {
+          "kind": "appliance",
+          "id": "sensor.washer_remaining_time",
+          "statusEntity": "sensor.washer_current_status",
+          "label": "Washer",
+          "visibleWhen": { "not": "power_off" }
+        },
+        { "kind": "fan",   "id": "switch.fanbasementbathroom",   "label": "Fan" },
+        { "kind": "light", "id": "switch.lightbasementbathroom", "label": "Light" }
+      ]
+    }
+  ],
+
+  "systemRefs": [
+    { "id": "sumpump",     "name": "Sump pump",      "entity": "switch.plug_sumpump",                 "icon": "pump",  "detail": "Basement pump" },
+    {
+      "id": "dehum",       "name": "Dehumidifier",   "entity": "switch.deshumidificateur_sous_sol",   "icon": "humid", "detail": "Basement",
+      "metricEntity": "sensor.sallejeuxtemphumsensor_salle_de_jeux_humidity", "metricLabel": "HUM", "metricUnit": "%"
+    },
+    {
+      "id": "garage_clim", "name": "Garage climate", "entity": null, "icon": "drop", "detail": "Garage sensors",
+      "metricEntity": "sensor.garage_humidity",    "metricLabel": "HUM",  "metricUnit": "%",
+      "subEntity":    "sensor.garage_temperature", "subLabel":    "TEMP", "subUnit":    "°C"
+    },
+    {
+      "id": "printer", "name": "Bambu Lab A1", "entity": null, "icon": "wave", "detail": "3D printer",
+      "metricEntity": "sensor.bambu_lab_a1_etat_de_l_impression", "metricLabel": "STATE", "metricUnit": ""
+    },
+    {
+      "id": "laundry", "name": "Laundry", "entity": null, "icon": "drop", "detail": "Dryer + washer",
+      "metricEntity": "sensor.dryer_current_status",  "metricLabel": "DRY",  "metricUnit": "",
+      "subEntity":    "sensor.washer_current_status", "subLabel":    "WASH", "subUnit":    ""
+    }
+  ],
+
+  "cameras": [
+    {
+      "id": "camera.front_door",
+      "name": "Front door",
+      "shortName": "FRONT",
+      "brand": "blink",
+      "type": "catalina",
+      "motionEntity":  "binary_sensor.front_door_motion",
+      "batteryEntity": "binary_sensor.front_door_battery",
+      "armSwitch":     "switch.front_door_camera_motion_detection",
+      "tempEntity":    "sensor.blink_front_door_temperature",
+      "signalEntity":  "sensor.blink_front_door_wi_fi_signal_strength",
+      "signalKind":    "wifi",
+      "battery":       true
+    },
+    {
+      "id": "camera.front_door_bell",
+      "name": "Doorbell",
+      "shortName": "DOORBELL",
+      "brand": "blink",
+      "type": "lotus",
+      "motionEntity":  "binary_sensor.front_door_bell_motion",
+      "batteryEntity": "binary_sensor.front_door_bell_battery",
+      "armSwitch":     "switch.front_door_bell_camera_motion_detection",
+      "tempEntity":    "sensor.blink_front_door_bell_temperature",
+      "signalEntity":  "sensor.blink_front_door_bell_wi_fi_signal_strength",
+      "signalKind":    "sync",
+      "battery":       true,
+      "isDoorbell":    true
+    },
+    {
+      "id": "camera.garage_door",
+      "name": "Garage",
+      "shortName": "GARAGE",
+      "brand": "blink",
+      "type": "catalina",
+      "motionEntity":  "binary_sensor.garage_door_motion",
+      "batteryEntity": "binary_sensor.garage_door_battery",
+      "armSwitch":     "switch.garage_door_camera_motion_detection",
+      "tempEntity":    "sensor.blink_garage_door_temperature",
+      "signalEntity":  "sensor.blink_garage_door_wi_fi_signal_strength",
+      "signalKind":    "wifi",
+      "battery":       true
+    },
+    {
+      "id": "camera.salon",
+      "name": "Living room",
+      "shortName": "LIVING",
+      "brand": "blink",
+      "type": "hawk",
+      "motionEntity":  "binary_sensor.salon_motion",
+      "batteryEntity": "binary_sensor.salon_battery",
+      "armSwitch":     "switch.salon_camera_motion_detection",
+      "tempEntity":    null,
+      "signalEntity":  null,
+      "signalKind":    null,
+      "battery":       false,
+      "indoor":        true
+    }
+  ],
+
+  "scenes": [
+    {
+      "id": "presence_home", "name": "Home presence", "icon": "shield",
+      "entity": "input_boolean.presence_maison",
+      "kind": "toggle", "domain": "input_boolean",
+      "onLabel": "● HOME · TRACKED", "offLabel": "○ NO PRESENCE"
+    },
+    {
+      "id": "pickup_remote_start", "name": "Truck start", "icon": "wave",
+      "entity": "input_button.pickup_remote_start",
+      "kind": "press", "domain": "input_button",
+      "pressLabel": "● STARTING", "idleLabel": "○ PRESS"
+    },
+    {
+      "id": "refresh_cameras", "name": "Refresh cameras", "icon": "cam",
+      "entity": "script.refresh_cameras_maison",
+      "kind": "press", "domain": "script",
+      "pressLabel": "● REFRESH", "idleLabel": "○ REFRESH"
+    },
+    {
+      "id": "away", "name": "Away", "icon": "lock",
+      "entity": "alarm_control_panel.blink_home",
+      "kind": "alarm", "domain": "alarm_control_panel",
+      "onLabel": "● ARMED · AWAY", "offLabel": "○ DISARMED"
+    }
+  ],
+
+  "extraActions": {
+    "groups": [
+      {
+        "id": "lights", "name": "Lights", "icon": "bulb", "tint": "#ffd54a",
+        "actions": [
+          { "id": "script.light_close_all", "label": "Turn off all lights", "icon": "bulb-off", "danger": true }
+        ]
+      },
+      {
+        "id": "presence", "name": "Presence", "icon": "home", "tint": "#4be6ff",
+        "actions": [
+          { "id": "script.security_arriving_home", "label": "Arriving home",  "icon": "home" },
+          { "id": "script.quitter_la_maison",      "label": "Leaving home",   "icon": "home-out" },
+          { "id": "script.preparer_maison",        "label": "Prepare home",   "icon": "sparkle" }
+        ]
+      },
+      {
+        "id": "thermostats", "name": "Thermostats", "icon": "thermo", "tint": "#ff9e66",
+        "actions": [
+          { "id": "script.thermostat_set_temp_high",    "label": "Raise all thermostats",   "icon": "thermo-up" },
+          { "id": "script.thermostat_set_temp_default", "label": "Default all thermostats", "icon": "thermo" },
+          { "id": "script.thermostat_set_temp_low",     "label": "Lower all thermostats",   "icon": "thermo-down" },
+          { "id": "script.thermostat_turn_off_all",     "label": "Turn off all thermostats","icon": "thermo-off", "danger": true },
+          { "id": "script.thermostat_turn_heat_all",    "label": "Heat all thermostats",    "icon": "flame" }
+        ]
+      },
+      {
+        "id": "cameras", "name": "Cameras", "icon": "cam", "tint": "#ff4a6b",
+        "subtitle": "Refresh snapshots",
+        "actions": [
+          { "id": "script.refresh_cameras_maison", "label": "Home · All", "icon": "home" }
+        ]
+      }
+    ]
+  },
+
+  "calendar": {
+    "viewEntity": "input_select.calendar_view",
+    "viewOptions": ["Today", "Tomorrow", "Week", "2 Weeks", "Month", "2 Months"],
+    "viewDays": { "Today": 1, "Tomorrow": 2, "Week": 7, "2 Weeks": 14, "Month": 28, "2 Months": 56 },
+    "weatherEntity": "weather.forecast_home",
+    "sources": [
+      { "id": "jordan",           "name": "Jordan",     "entity": "calendar.jordan",           "color": "#040c52", "filterEntity": "input_text.calendar_filter_jordan" },
+      { "id": "jordan_reminders", "name": "Reminders",  "entity": "calendar.jordan_reminders", "color": "#040c52", "filterEntity": "input_text.calendar_filter_jordan_reminders" },
+      { "id": "alex",             "name": "Alex",       "entity": "calendar.alex",             "color": "#a4590e", "filterEntity": "input_text.calendar_filter_alex" },
+      { "id": "noah",             "name": "Noah",       "entity": "calendar.noah",             "color": "#043504", "filterEntity": "input_text.calendar_filter_noah" },
+      { "id": "mia",              "name": "Mia",        "entity": "calendar.mia",              "color": "#9260e9", "filterEntity": "input_text.calendar_filter_mia" },
+      { "id": "mia_school",       "name": "Mia School", "entity": "calendar.mia_school",       "color": "#9260e9", "filterEntity": "input_text.calendar_filter_mia" },
+      { "id": "riley",            "name": "Riley",      "entity": "calendar.riley",            "color": "#ef2bfb", "filterEntity": "input_text.calendar_filter_riley" },
+      { "id": "liam",             "name": "Liam",       "entity": "calendar.liam",             "color": "#f2ad04", "filterEntity": "input_text.calendar_filter_liam" },
+      { "id": "famille",         "name": "Family",     "entity": "calendar.famille",         "color": "#066cee", "filterEntity": "input_text.calendar_filter_famille" }
+    ]
+  }
+}
